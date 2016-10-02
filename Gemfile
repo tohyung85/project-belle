@@ -31,6 +31,8 @@ gem 'sprockets', '2.11.0'
 gem 'sass-rails'
 # jQuery UI
 gem 'jquery-ui-rails'
+# Puma
+gem 'puma',  '~> 3.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
