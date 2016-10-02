@@ -1,0 +1,27 @@
+language: ruby
+rvm:
+- 2.2.4
+before_install: gem update --remote bundler
+install:
+- bundle install --retry=3
+script:
+- bundle exec rspec
+- bundle exec rubocop --config .rubocop.yml
+services: 
+- postgresql
+- redis-server
+script:
+- bundle exec rake db:test:prepare
+- bundle exec rspec
+- bundle exec rubocop
+deploy:
+  provider: heroku
+  run:
+  - rake db:migrate
+  api_key:
+    secure: 7679a131-2524-4ea5-ae9d-9b67d9f45b68
+  app:
+    #production: coding-pals
+    master: coding-pals
+  on:
+    repo: tohyung85/coding-pal
