@@ -5,23 +5,18 @@ before_install: gem update --remote bundler
 install:
 - bundle install --retry=3
 script:
-- bundle exec rspec
-- bundle exec rubocop --config .rubocop.yml
-services: 
-- postgresql
-- redis-server
-script:
 - bundle exec rake db:test:prepare
 - bundle exec rspec
 - bundle exec rubocop
+services:
+- postgresql
 deploy:
   provider: heroku
   run:
   - rake db:migrate
   api_key:
-    secure: 7679a131-2524-4ea5-ae9d-9b67d9f45b68
+    secure: j844OZkL59qjE7uFRQeVHUEye/BqROSP3XUOUET5myineXyDBG6ci1bBfx1YDerhKFsaTUs+fxoi+0iSFvAWPGPy+9lhOao6H8KveSDNOInTpE3Ln3l40Yk9279n0j8WuMDRJzQXouSAzrAUlLK7X43VIKwOX1s3PH/l30ERReUgFuj2t5kgSYtt5J9Q/CsbM00zvG8rOOJK6DlP9YqQVSyBKctOoU/gzVTbiWHzofvQXY5pDUtb/XzDGZqOIYaghlY6SuRQmBNoyrAmg+N0O178SBn9pbT8pxFXRzW5I3krfeVEemYPeLl2MQ/UHpz05yLjVPujVS4MwJNZgVUWJDVHfmr2Jc19nckF3mVVitlU9mR3UQBJQkfxWrbmZh0CQFnLSyo5aWvdPV/RyL7eeA3hrMAxbXigKCItliqXAW3nzGNnTVOD9os3CQ1rg5PBz9oQk3hGDJbvEAsnbqE/yi5FfovfWwrvdJ3sIyXfrgSHgGsrIKQ4lyjJ4Srbz77XJyD+BzD8L47YL+EsyRSZaKBryvGjPlywab7uaH34w4jgmnS7x7ECZr/GzH9TfhqTodUctoK81HtIF1FHsjcAGgp7sfqgiaTN5uO/VXerGRCODesTJBHw/ifR81invPX0h//FYyprTKYF2YtA8couTqsPlyPuC18xg5DjBH120j0=
   app:
-    #production: coding-pals
-    master: coding-pals
+    master: staging-project-belle
   on:
     repo: tohyung85/coding-pal

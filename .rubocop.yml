@@ -1,0 +1,30 @@
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+    - lib/**/*.rake
+  Exclude:
+    - db/schema.rb
+
+# No I don't need to document every class
+Style/Documentation:
+  Enabled: false
+
+# This is a horrible metric and plays very badly with block initializers which are really common
+Metrics/AbcSize:
+  Enabled: false
+
+# 100 line classes, nope.
+Metrics/ClassLength:
+  Enabled: false
+
+# I care much more about clear code than line length
+Metrics/LineLength:
+  Enabled: false
+
+# this one is debatable, but I do a lot of dirty data processing in ruby and it's painful to do without
+Style/RescueModifier:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
