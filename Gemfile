@@ -13,13 +13,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-
 # Rails 12 Factor for Heroku
 gem 'rails_12factor', group: :production
-
 # Figaro
 gem 'figaro', '>= 1.0.0'
-
+# Devise
+gem 'devise', '>= 3.2.4'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
