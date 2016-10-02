@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
-//= require jquery_ui
+//= require jquery-ui
 //= require jquery_ujs
 //= require_tree .
