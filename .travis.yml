@@ -19,4 +19,4 @@ deploy:
   app:
     master: staging-project-belle
   on:
-    repo: tohyung85/coding-pal
+    repo: tohyung85/project-belle
