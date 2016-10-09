@@ -4,5 +4,4 @@ class EmailMessage < ActiveRecord::Base
   def send_email
     MessageMailer.email_receipient(id).deliver
   end
-
 end

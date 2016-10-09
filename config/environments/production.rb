@@ -8,7 +8,7 @@ Rails.application.configure do
     password: ENV['SENDGRID_PASSWORD'],
     domain: 'heroku.com',
     enable_starttls_auto: true
-  }  
+  }
   config.action_mailer.default_url_options = { host: 'https://project-belle.herokuapp.com/' }
   # Code is not reloaded between requests.
   config.cache_classes = true
