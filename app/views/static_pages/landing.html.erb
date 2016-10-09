@@ -6,9 +6,21 @@ Hello world!
 <%= button_tag 'start', class: 'btn btn-primary', id: 'start-record' %>
 <%= button_tag 'stop', class: 'btn btn-alert', id: 'stop-record' %>
 
+<%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary' %>
+<%= link_to 'Sign Out', destroy_user_session_path, class: 'btn btn-primary', method: :delete %>
+
 <br/>
 
 <div id='results'>
   <span id='final_span'></span>
   <span id='interim_span'></span>
+</div>
+
+<div class='test_email'>
+  <%= simple_form_for @email do |f| %>
+    <%= f.input :receipient %>
+    <%= f.input :subject %>
+    <%= f.input :content %>
+    <%= f.submit 'Send Email', class: 'btn btn-primary' %>
+  <% end %>
 </div>
