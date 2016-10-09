@@ -1,1 +1,14 @@
-Hello world! Test Travis
+<%= javascript_include_tag 'main.js' %>
+Hello world! 
+
+<br/>
+
+<%= button_tag 'start', class: 'btn btn-primary', id: 'start-record' %>
+<%= button_tag 'stop', class: 'btn btn-alert', id: 'stop-record' %>
+
+<br/>
+
+<div id='results'>
+  <span id='final_span'></span>
+  <span id='interim_span'></span>
+</div>
