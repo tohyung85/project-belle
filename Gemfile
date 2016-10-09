@@ -33,6 +33,9 @@ gem 'sass-rails'
 gem 'jquery-ui-rails'
 # Puma
 gem 'puma',  '~> 3.4.0'
+# Simple Form
+gem 'simple_form'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
