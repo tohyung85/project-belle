@@ -99,7 +99,7 @@ $(function(){
         } else {
           interim_transcript += event.results[i][0].transcript;          
         }
-      }
+      }      
 
       // final_transcript = capitalize(final_transcript);
       final_span.innerHTML = final_transcript;
@@ -112,6 +112,11 @@ $(function(){
 
     emailVoiceRecognition.onend = function() {
       if (stop_speech === true) {
+        // Edit rails params requirement, just a string requirement will do
+        // ajax post to Rails for string processing and email
+          // on success, reset message, inform user of command
+          // else display error
+        // probably makes sense to revert back to command mode
         emailVoiceRecognition.stop();
         recognition.start();
         console.log('email voice recognition end');
