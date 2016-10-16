@@ -30,13 +30,11 @@ $(function(){
       dataType: 'json',
       data: {email_message: 
         {
-          receipient: 'tantohyung@gmail.com',
-          subject: 'testing ajax',
-          content: 'this is a test, testing 1 2 3'
+          content: 'Joshua subject this is a test content testing 1 2 3'
         }
       }
     }).done(function(data){
-      console.log('done!');
+      console.log(data);
     });
   }
 

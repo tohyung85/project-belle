@@ -11,9 +11,7 @@ RSpec.describe EmailMessagesController, type: :controller do
       it 'should allow user to create email' do
         expect do
           post :create, email_message: {
-            receipient: 'tantohyung@gmail.com',
-            subject: 'hello',
-            content: 'testing 123'
+            content: 'Joshua subject test email content testing 123'
           }
         end.to change { EmailMessage.count }.by 1
 
@@ -25,9 +23,7 @@ RSpec.describe EmailMessagesController, type: :controller do
       it 'should redirect user to sign in' do
         expect do
           post :create, email_message: {
-            receipient: 'tantohyung@gmail.com',
-            subject: 'hello',
-            content: 'testing 123'
+            content: 'Joshua subject test email content testing 123'
           }
         end.not_to change { EmailMessage.count }
 
