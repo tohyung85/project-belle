@@ -17,7 +17,7 @@ RSpec.describe EmailMessagesController, type: :controller do
           }
         end.to change { EmailMessage.count }.by 1
 
-        expect(response).to redirect_to root_path
+        expect(response).to have_http_status(200)
       end
     end
 

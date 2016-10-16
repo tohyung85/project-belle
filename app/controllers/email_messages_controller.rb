@@ -2,7 +2,7 @@ class EmailMessagesController < ApplicationController
   before_action :authenticate_user!
   def create
     current_user.email_messages.create(email_params)
-    redirect_to root_path
+    render json: { status: 'done' }
   end
 
   private
