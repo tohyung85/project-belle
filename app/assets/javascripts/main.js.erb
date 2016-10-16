@@ -25,10 +25,16 @@ $(function(){
 
   function sendEmail() {
     $.ajax({
-      type: 'PUT',
-      url: ui.draggable.data('update-url'),
+      type: 'POST',
+      url: '/email_messages',
       dataType: 'json',
-      data: {email_message: {receipient: '', column_coordinate: $(this).data("column")}}
+      data: {email_message: 
+        {
+          receipient: 'tantohyung@gmail.com',
+          subject: 'testing ajax',
+          content: 'this is a test, testing 1 2 3'
+        }
+      }
     }).done(function(data){
       console.log('done!');
     });
