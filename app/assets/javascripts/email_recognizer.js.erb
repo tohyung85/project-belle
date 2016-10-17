@@ -48,21 +48,31 @@ EmailRecognizer.prototype.configureCallbacks = function () {
 
   recognition.onend = function() {
     if (emailRec.stop_speech === true) {
-      // Edit rails params requirement, just a string requirement will do
-      // ajax post to Rails for string processing and email
-        // on success, reset message, inform user of command
-        // else display error
-      recognition.stop();
+      sendEmail(final_transcript);
       emailRec.commander.startup();
       console.log('email voice recognition end');
-      console.log('command voice recognition restarted');
     } else {
       console.log('continue message');
-      recognition.start();
+      emailRec.recognition.start();
     }    
   }    
 
   recognition.onerror = function(event) {
     console.log('Speech Recognition Error: '+ event.error);
   }  
+}
+
+function sendEmail(transcript) {
+  $.ajax({
+    type: 'POST',
+    url: '/email_messages',
+    dataType: 'json',
+    data: {email_message: 
+      {
+        content: transcript
+      }
+    }
+  }).done(function(data){
+    console.log(data['status']);
+  });
 }

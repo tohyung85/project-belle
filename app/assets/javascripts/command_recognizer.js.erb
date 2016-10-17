@@ -26,7 +26,9 @@ CommandRecognizer.prototype.configureCallbacks = function () {
   recognition = this.recognition;
   
   recognition.onstart = function() {
+    console.log('command voice recognition started');    
     commandRec.shutdown_ai = false;
+    recognition = this.recognition;
   }
 
   recognition.onresult = function(event) {
@@ -65,7 +67,7 @@ CommandRecognizer.prototype.configureCallbacks = function () {
       console.log('shutting down...');  
     } else {
       console.log('still awake...');
-      recognition.start();  
+      commandRec.recognition.start();
     }      
   } 
 }

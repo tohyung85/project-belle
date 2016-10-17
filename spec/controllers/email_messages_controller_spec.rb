@@ -30,7 +30,15 @@ RSpec.describe EmailMessagesController, type: :controller do
         expect(parsed_response['status']).to eq 404
       end
 
-      it 'should return a 500 status code if no key words or other errors' do
+      it 'should return a 500 status code if missing key words or other errors' do
+        expect do
+          post :create, email_message: {
+            content: 'Bumblebe testing content transformers'
+          }
+        end.not_to change { EmailMessage.count }
+
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq 500
       end
     end
 
