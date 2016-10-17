@@ -14,7 +14,7 @@ RSpec.describe EmailMessagesController, type: :controller do
             content: 'Joshua subject test email content testing 123'
           }
         end.to change { EmailMessage.count }.by 1
-        
+
         parsed_response = JSON.parse(response.body)
         expect(parsed_response['status']).to eq 200
       end

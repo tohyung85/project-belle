@@ -6,10 +6,10 @@ class EmailMessagesController < ApplicationController
 
     status = validate_email_fields(email_fields)
     if status == 200
-      current_user.email_messages.create(email_fields) 
-      render json: {status: status, name: email_fields[:receipient], subject: email_fields[:subject], content: email_fields[:content] }
+      current_user.email_messages.create(email_fields)
+      render json: { status: status, name: email_fields[:receipient], subject: email_fields[:subject], content: email_fields[:content] }
     else
-      render json: {status: status }
+      render json: { status: status }
     end
   end
 
