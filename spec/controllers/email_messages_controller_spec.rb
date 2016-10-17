@@ -14,8 +14,23 @@ RSpec.describe EmailMessagesController, type: :controller do
             content: 'Joshua subject test email content testing 123'
           }
         end.to change { EmailMessage.count }.by 1
+        
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq 200
+      end
 
-        expect(response).to have_http_status(200)
+      it 'should return a 404 status code if user not found' do
+        expect do
+          post :create, email_message: {
+            content: 'Bumblebee subject testing content transformers'
+          }
+        end.not_to change { EmailMessage.count }
+
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq 404
+      end
+
+      it 'should return a 500 status code if no key words or other errors' do
       end
     end
 

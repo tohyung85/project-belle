@@ -3,8 +3,14 @@ class EmailMessagesController < ApplicationController
   def create
     @name_avail = { joshua: 'tantohyung@gmail.com' }
     email_fields = prepare_email_fields(email_params[:content])
-    current_user.email_messages.create(email_fields)
-    render json: { status: 'success', name: email_fields[:receipient], subject: email_fields[:subject], content: email_fields[:content] }
+
+    status = validate_email_fields(email_fields)
+    if status == 200
+      current_user.email_messages.create(email_fields) 
+      render json: {status: status, name: email_fields[:receipient], subject: email_fields[:subject], content: email_fields[:content] }
+    else
+      render json: {status: status }
+    end
   end
 
   private
@@ -21,5 +27,12 @@ class EmailMessagesController < ApplicationController
     email_fields[:content] = contents_arr[1]
 
     email_fields
+  end
+
+  def validate_email_fields(email_fields)
+    return 500 if email_fields[:subject].nil? || email_fields[:content].nil?
+    return 404 if email_fields[:receipient].nil?
+
+    200
   end
 end
