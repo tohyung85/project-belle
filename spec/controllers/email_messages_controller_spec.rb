@@ -11,13 +11,34 @@ RSpec.describe EmailMessagesController, type: :controller do
       it 'should allow user to create email' do
         expect do
           post :create, email_message: {
-            receipient: 'tantohyung@gmail.com',
-            subject: 'hello',
-            content: 'testing 123'
+            content: 'Joshua subject test email content testing 123'
           }
         end.to change { EmailMessage.count }.by 1
 
-        expect(response).to redirect_to root_path
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq 200
+      end
+
+      it 'should return a 404 status code if user not found' do
+        expect do
+          post :create, email_message: {
+            content: 'Bumblebee subject testing content transformers'
+          }
+        end.not_to change { EmailMessage.count }
+
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq 404
+      end
+
+      it 'should return a 500 status code if missing key words or other errors' do
+        expect do
+          post :create, email_message: {
+            content: 'Bumblebe testing content transformers'
+          }
+        end.not_to change { EmailMessage.count }
+
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq 500
       end
     end
 
@@ -25,9 +46,7 @@ RSpec.describe EmailMessagesController, type: :controller do
       it 'should redirect user to sign in' do
         expect do
           post :create, email_message: {
-            receipient: 'tantohyung@gmail.com',
-            subject: 'hello',
-            content: 'testing 123'
+            content: 'Joshua subject test email content testing 123'
           }
         end.not_to change { EmailMessage.count }
 

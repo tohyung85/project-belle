@@ -10,6 +10,7 @@ script:
 - bundle exec rubocop
 services:
 - postgresql
+- redis-server
 deploy:
   provider: heroku
   run:

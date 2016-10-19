@@ -35,7 +35,9 @@ gem 'jquery-ui-rails'
 gem 'puma',  '~> 3.4.0'
 # Simple Form
 gem 'simple_form'
-
+# Sidekiq
+gem 'sidekiq'
+gem 'sinatra'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

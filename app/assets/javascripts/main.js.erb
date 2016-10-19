@@ -1,0 +1,41 @@
+//= require command_recognizer
+
+$(function(){
+  if(!('webkitSpeechRecognition' in window)) {
+    upgrade();
+  } else {
+    var shutdown_ai = false;
+    var commands = ['message', 'email', 'notes'];
+
+    var recognition = new CommandRecognizer();
+  }
+  
+  $('#start-record').click(startButton);
+  $('#stop-record').click(stopButton);
+
+  $('#test-ajax-button').click(sendEmail);
+
+  function startButton() {
+    recognition.startup();
+  }
+
+  function stopButton() {
+    recognition.shutdown();
+  }
+
+  function sendEmail() {
+    $.ajax({
+      type: 'POST',
+      url: '/email_messages',
+      dataType: 'json',
+      data: {email_message: 
+        {
+          content: 'Joshua subject this is a test content testing 1 2 3'
+        }
+      }
+    }).done(function(data){
+      console.log(data);
+    });
+  }
+
+});
